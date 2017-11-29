@@ -5,7 +5,9 @@ const topStockController = require("../../controllers/topStockController");
 // Matches with "/api/stocks"
 router.route("/")
   .get(topStockController.findTopStocks)
-  .post(userController.create)
+  // .post(userController.create)
+  .post(topStockController.create);
+
 
 // Matches with "/api/stocks/:id"
 router
