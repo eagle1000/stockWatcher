@@ -3,9 +3,7 @@ const Schema = mongoose.Schema;
 
 const topStockSchema = new Schema({
 
-	topStocks: [
-    	{ type: String }
-    ]
+	ticker: {type: String}
 
 	});
 
