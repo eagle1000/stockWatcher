@@ -15,7 +15,12 @@ router
   .route("/:id")
   .get(userController.findById)
   .put(userController.update)
-  .delete(userController.remove);
+  .delete(userController.remove)
 
+// Matches with "/api/stocks/:id/ddashboard"
+router
+	.route("/:id/dashboard")
+	.get(userController.findStocks)
+	.put(userController.insertStock)
 
 module.exports = router;

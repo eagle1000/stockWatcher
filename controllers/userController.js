@@ -52,6 +52,16 @@ module.exports = {
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
 
-  }
-};
+    insertStock: function(req, res) {
+      console.log(req.body)
+    db.UserData
+      .findOneAndUpdate({"_id": req.params.id }, 
+      { $push: { "stocks":req.body } } )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+}
+
+}
+
