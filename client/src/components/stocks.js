@@ -1,9 +1,46 @@
 import React, {Component} from "react"
 import {Link} from "react-router";
+// Include the helpers for making API calls
+import helpers from "../utils/helpers";
+
+
 
 class Stocks extends Component {
+ constructor(props) {
+    super(props);
+    this.state =  {
+        close: '',
+        ticker: ''
+    }
+    this.setQuery = this.setQuery.bind(this);
+  }  
+
+savedStocks() {
+    console.log('we hit savedStocks function starting --');
+    helpers.getSavedStocks().then((stocks) => {
+      console.log('these are the saved stocks',stocks.data)
+      this.setState({ticker: stocks.data});
+    });
+  }
+
+ setQuery() {
+    console.log('we hit setQuest function starting --');
+    helpers.realTimeQuotes().then((data) => {
+      console.log('this is stock price IN THE COMPONENT ready to gooo ---',data)
+      this.setState({close: data});
+    });
+  }
+
+
+  componentWillMount() {
+    this.setQuery()
+    this.savedStocks()
+  }
 
     render() {
+
+
+    console.log('this is the state of our stock component ------', this.state);
         return (
             <div>
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
@@ -55,6 +92,13 @@ class Stocks extends Component {
         <footer class="footer">
           <div class="container">
             <p>Stocks Scraper</p>
+            <h1>{this.state.close}</h1>
+            {
+                this.state.ticker &&
+                this.state.ticker.map( tickerObj => 
+                    <h3>{tickerObj.ticker}</h3>
+                )
+            }
           </div>
         </footer>
  </div>
