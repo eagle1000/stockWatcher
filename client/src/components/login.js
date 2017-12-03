@@ -11,9 +11,9 @@ class Login extends Component {
 
 		</div>
 
-	<div class="container">
+	<div className="container">
  
-		<form action="/signin" method="POST" class="form-signin">
+		<form action="/signin" method="POST" className="form-signin">
 			<label for="inputEmail" className="sr-only">Email Address</label>
 			<input type="email" name="email" id="inputEmail" className="form-control form-box-style" placeholder="Email" required autofocus></input>
 			<label for="inputPassword" className="sr-only">Password</label>

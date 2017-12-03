@@ -10,7 +10,7 @@ class Stocks extends Component {
     super(props);
     this.state =  {
         // close: '',
-        ticker: []
+        hotStocks: []
     }
     // this.setQuery = this.setQuery.bind(this);
     this.savedStocks = this.savedStocks.bind(this);
@@ -20,7 +20,7 @@ savedStocks() {
     // console.log('we hit savedStocks function starting --');
     helpers.getSavedStocks().then((stocks) => {
       // console.log('these are the saved stocks',stocks)
-      this.setState({ticker: stocks});
+      this.setState({hotStocks: stocks});
     });
   }
 
@@ -95,7 +95,7 @@ savedStocks() {
             <p>Stocks Scraper</p>
             // <h1>{this.state.close}</h1>
             
-            <h2>{this.state.ticker}</h2>
+            <h2>{this.state.hotStocks}</h2>
            
           </div>
         </footer>
