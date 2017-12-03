@@ -6,7 +6,8 @@ const topStockController = require("../../controllers/topStockController");
 router.route("/")
   .get(topStockController.findTopStocks)
   
-// .post(topStockController.create);  this route was used to seed the production database
+// .post(topStockController.create);  
+// this route was used to seed the production database
 
 
 // Matches with "/api/stocks/:id"

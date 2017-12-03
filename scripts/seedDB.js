@@ -12,7 +12,7 @@ mongoose.connect(
 );
 
 const stockSeed = {
-	topStocks: ["AAPL", "IBM", "FB", "TSLA", "GOOGL", "MSFT", "NFLX", "AMZN", "GE", "DIS", "WMT", "TGT", "BAC", "GS", "XOM", "MCD", "TWTR", "MDB", "BABA", "WYNN", "SHOP", "EBAY", "NVDA", "PYPL", "SQ"]
+	topStocks: ["AAPL", "IBM", "FB"]
 };
 
 

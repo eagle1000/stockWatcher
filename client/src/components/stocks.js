@@ -9,10 +9,11 @@ class Stocks extends Component {
  constructor(props) {
     super(props);
     this.state =  {
-        close: '',
+        // close: '',
         ticker: []
     }
-    this.setQuery = this.setQuery.bind(this);
+    // this.setQuery = this.setQuery.bind(this);
+    this.savedStocks = this.savedStocks.bind(this);
   }  
 
 savedStocks() {
@@ -23,17 +24,17 @@ savedStocks() {
     });
   }
 
- setQuery() {
-    // console.log('we hit setQuest function starting --');
-    helpers.realTimeQuotes().then((data) => {
-      // console.log('this is stock price IN THE COMPONENT ready to gooo ---',data)
-      this.setState({close: data});
-    });
-  }
+ // setQuery() {
+ //    // console.log('we hit setQuest function starting --');
+ //    helpers.realTimeQuotes().then((data) => {
+ //      // console.log('this is stock price IN THE COMPONENT ready to gooo ---',data)
+ //      this.setState({close: data});
+ //    });
+ //  }
 
 
   componentWillMount() {
-    this.setQuery()
+    // this.setQuery()
     this.savedStocks()
   }
 
@@ -66,7 +67,7 @@ savedStocks() {
                 <a className="nav-link" href="/stocks"><h4>Stocks</h4></a>
             </li>
             <li className="nav-item">
-                <a class="nav-link" href="/news"><h4>News</h4></a>
+                <a className="nav-link" href="/news"><h4>News</h4></a>
             </li>
             <li className="nav-item">
                 <a className="nav-link" href="/wishlist"><h4>WishList</h4></a>
@@ -92,10 +93,10 @@ savedStocks() {
         <footer className="footer">
           <div className="container">
             <p>Stocks Scraper</p>
-            <h1>{this.state.close}</h1>
-            <ul>
-            <li>{this.state.ticker}</li>
-            </ul>
+            // <h1>{this.state.close}</h1>
+            
+            <h2>{this.state.ticker}</h2>
+           
           </div>
         </footer>
  </div>
