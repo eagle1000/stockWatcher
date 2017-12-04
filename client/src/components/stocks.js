@@ -9,39 +9,41 @@ class Stocks extends Component {
  constructor(props) {
     super(props);
     this.state =  {
-        // close: '',
-        hotStocks: []
+        hotStocks: [],
+        userStocks: []
     }
-    // this.setQuery = this.setQuery.bind(this);
     this.savedStocks = this.savedStocks.bind(this);
+    this.userSavedStocks = this.userSavedStocks.bind(this);
+
   }  
 
+renderHotStocks(){
+    return this.state.hotStocks.map(function(item){
+        return <p key= {item} >{item}</p>
+    })
+}
 savedStocks() {
     // console.log('we hit savedStocks function starting --');
     helpers.getSavedStocks().then((stocks) => {
       // console.log('these are the saved stocks',stocks)
       this.setState({hotStocks: stocks});
     });
+  };
+
+  userSavedStocks() {
+     // console.log('we hit savedStocks function starting --');
+    helpers.getUserStocks().then((mystocks) => {
+      // console.log('these are the saved stocks',stocks)
+      this.setState({userStocks: mystocks});
+    });
   }
-
- // setQuery() {
- //    // console.log('we hit setQuest function starting --');
- //    helpers.realTimeQuotes().then((data) => {
- //      // console.log('this is stock price IN THE COMPONENT ready to gooo ---',data)
- //      this.setState({close: data});
- //    });
- //  }
-
 
   componentWillMount() {
-    // this.setQuery()
-    this.savedStocks()
+    this.savedStocks();
+    this.userSavedStocks();
   }
 
-    render() {
-
-
-    
+    render() {  
         return (
             <div>
 <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
@@ -88,14 +90,18 @@ savedStocks() {
     </div>
 
 <div className="container-fluid stocks-container">
-    <h2>{this.state.hotStocks}</h2>
+    <div>{this.renderHotStocks()}</div>
+
+    
     <Chart />
+
+    <h2>{this.state.userStocks}</h2>
 </div>
 
         <footer className="footer">
           <div className="container">
             <p>Stocks Scraper</p>
-            // <h1>{this.state.close}</h1>
+         
             
             
            
