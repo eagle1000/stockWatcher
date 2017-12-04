@@ -46,13 +46,12 @@ class News extends Component {
 
 
 
-<<<<<<< HEAD
-*/
-            <div class="wrapper">
-=======
 
             <div className="wrapper">
->>>>>>> 21a15eadfb59ff0bfe78d0cf992cd12557fcdd6e
+
+
+            <div className="wrapper">
+
               
                     <button className="btn sort-btn btn-lg" id="listNew" href="/connections/chrono">r/StockMarket</button>
                     <button className="btn sort-btn btn-lg" id="listAlpha" href="/connections/alpha">r/Investing</button>
@@ -68,7 +67,7 @@ class News extends Component {
               </div>
             </footer>
             </div>
-                    
+        </div>
 
             )
     }
