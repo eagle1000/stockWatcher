@@ -5,21 +5,15 @@ const topStockController = require("../../controllers/topStockController");
 // Matches with "/api/stocks"
 router.route("/")
   .get(topStockController.findTopStocks)
-  .post(userController.create)
-
-  // .post(topStockController.create);  this route was used to seed the database
+  
+// .post(topStockController.create);  
+// this route was used to seed the production database
 
 
 // Matches with "/api/stocks/:id"
-router
-  .route("/:id")
-  .get(userController.findById)
-  .put(userController.update)
-  .delete(userController.remove)
 
-// Matches with "/api/stocks/:id/ddashboard"
 router
-	.route("/:id/dashboard")
+	.route("/:id")
 	.get(userController.findStocks)
 	.put(userController.insertStock)
 

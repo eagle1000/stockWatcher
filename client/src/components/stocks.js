@@ -1,12 +1,52 @@
 import React, {Component} from "react"
 import {Link} from "react-router";
+<<<<<<< HEAD
 // import "../css/stocksstyle.css";
+import helpers from "../utils/helpers";
+
+
+21a15eadfb59ff0bfe78d0cf992cd12557fcdd6e
 
 class Stocks extends Component {
+ constructor(props) {
+    super(props);
+    this.state =  {
+        // close: '',
+        hotStocks: []
+    }
+    // this.setQuery = this.setQuery.bind(this);
+    this.savedStocks = this.savedStocks.bind(this);
+  }  
+
+savedStocks() {
+    // console.log('we hit savedStocks function starting --');
+    helpers.getSavedStocks().then((stocks) => {
+      // console.log('these are the saved stocks',stocks)
+      this.setState({hotStocks: stocks});
+    });
+  }
+
+ // setQuery() {
+ //    // console.log('we hit setQuest function starting --');
+ //    helpers.realTimeQuotes().then((data) => {
+ //      // console.log('this is stock price IN THE COMPONENT ready to gooo ---',data)
+ //      this.setState({close: data});
+ //    });
+ //  }
+
+
+  componentWillMount() {
+    // this.setQuery()
+    this.savedStocks()
+  }
 
     render() {
+
+
+    
         return (
             <div>
+<<<<<<< HEAD
             <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
   
    
@@ -34,6 +74,9 @@ class Stocks extends Component {
   </div>
 </nav>
 {/*<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+=======
+<nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+>>>>>>> 21a15eadfb59ff0bfe78d0cf992cd12557fcdd6e
     <span>
     <button className="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span>
@@ -43,7 +86,15 @@ class Stocks extends Component {
     
 
 
+<<<<<<< HEAD
    
+=======
+    <button className="button-clear">
+        <a href="/share"> 
+            <i className="fa fa-plus fa-plus-connection fa-lg" aria-hidden="true"></i>
+        </a>
+    </button> 
+>>>>>>> 21a15eadfb59ff0bfe78d0cf992cd12557fcdd6e
 </span>
 
     <div className="collapse navbar-collapse" id="navbarContent">
@@ -67,9 +118,15 @@ class Stocks extends Component {
 
 <div className="wrapper">
   
+<<<<<<< HEAD
         <button className="btn sort-btn btn-lg" id="listHot" href="/connections/chrono">Hot</button>
         <button className="btn sort-btn btn-lg" id="listRising" href="/connections/alpha">Rising</button>
         <button className="btn sort-btn btn-lg" id="listFollowing" href="/connections/alpha">Following</button>
+=======
+        <button className="btn sort-btn btn-lg" id="listNew" href="/connections/chrono">r/StockMarket</button>
+        <button className="btn sort-btn btn-lg" id="listAlpha" href="/connections/alpha">r/Investing</button>
+        <button className="btn sort-btn btn-lg" id="listAlpha" href="/connections/alpha">r/Investing</button>
+>>>>>>> 21a15eadfb59ff0bfe78d0cf992cd12557fcdd6e
     </div>
 
 <div className="container-fluid stocks-container">
@@ -78,6 +135,10 @@ class Stocks extends Component {
         <footer className="footer">
           <div className="container">
             <p>Stocks Scraper</p>
+            // <h1>{this.state.close}</h1>
+            
+            <h2>{this.state.hotStocks}</h2>
+           
           </div>
         </footer>
  </div>

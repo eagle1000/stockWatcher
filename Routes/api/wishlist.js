@@ -5,7 +5,7 @@ const userController = require("../../controllers/userController");
 router
   .route("/:id")
   .get(userController.findByWish)
-  .put(userController.update)
+  .put(userController.insertWish)
   
 
 

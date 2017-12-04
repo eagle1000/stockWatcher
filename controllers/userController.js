@@ -25,6 +25,21 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
+    findSavedNews: function(req, res) {
+    db.UserData
+      .findById(req.params.id)
+      .then(dbModel => res.json(dbModel.articles))
+      .catch(err => res.status(422).json(err));
+  },
+
+    findAllNews: function(req, res) {
+    db.UserData
+      .findById(req.params.id)
+      .then(dbModel => res.json(dbModel.stocks))
+      .catch(err => res.status(422).json(err));
+  },
+
+
     findByWish: function(req, res) {
     db.UserData
       .findById(req.params.id)
@@ -58,7 +73,25 @@ module.exports = {
       console.log(req.body)
     db.UserData
       .findOneAndUpdate({"_id": req.params.id }, 
-      { $push: { "stocks":req.body } } )
+      { $push: { "stocks": req.body.stock } } )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+},
+
+  insertNews: function(req, res) {
+      console.log(req.body)
+    db.UserData
+      .findOneAndUpdate({"_id": req.params.id }, 
+      { $push: { "articles": req.body.article } } )
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+},
+
+insertWish: function(req, res) {
+      console.log(req.body)
+    db.UserData
+      .findOneAndUpdate({"_id": req.params.id }, 
+      { $push: { "wishList": req.body.wish } } )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
 }

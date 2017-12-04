@@ -7,35 +7,38 @@ class News extends Component {
     render() {
         return (
             <div>
-            /*<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+
+        
+            <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+
                 <span>
-                <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span>
-                        <i class="fa fa-bars fa-bars-connection fa-lg" aria-hidden="true"></i>
+                        <i className="fa fa-bars fa-bars-connection fa-lg" aria-hidden="true"></i>
                     </span>
                 </button>
             
 
-                <button class="button-clear">
+                <button className="button-clear">
                     <a href="/share"> 
-                        <i class="fa fa-plus fa-plus-connection fa-lg" aria-hidden="true"></i>
+                        <i className="fa fa-plus fa-plus-connection fa-lg" aria-hidden="true"></i>
                     </a>
                 </button> 
             </span>
                 
-                <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/stocks"><h4>Stocks</h4></a>
+                <div className="collapse navbar-collapse" id="navbarContent">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <a className="nav-link" href="/stocks"><h4>Stocks</h4></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/news"><h4>News</h4></a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/news"><h4>News</h4></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/wishlist"><h4>WishList</h4></a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/wishlist"><h4>WishList</h4></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login" id="sign-out-button"><h4>Sign Out</h4></a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/login" id="sign-out-button"><h4>Sign Out</h4></a>
                         </li>
                     </ul>
                 </div>
@@ -43,19 +46,24 @@ class News extends Component {
 
 
 
+<<<<<<< HEAD
 */
             <div class="wrapper">
+=======
+
+            <div className="wrapper">
+>>>>>>> 21a15eadfb59ff0bfe78d0cf992cd12557fcdd6e
               
-                    <button class="btn sort-btn btn-lg" id="listNew" href="/connections/chrono">r/StockMarket</button>
-                    <button class="btn sort-btn btn-lg" id="listAlpha" href="/connections/alpha">r/Investing</button>
+                    <button className="btn sort-btn btn-lg" id="listNew" href="/connections/chrono">r/StockMarket</button>
+                    <button className="btn sort-btn btn-lg" id="listAlpha" href="/connections/alpha">r/Investing</button>
                 
             </div>
 
-            <div class="container-fluid article-container">
+            <div className="container-fluid article-container">
             </div>
 
-            <footer class="footer">
-              <div class="container">
+            <footer className="footer">
+              <div className="container">
                 <p>Reddit Scraper</p>
               </div>
             </footer>
