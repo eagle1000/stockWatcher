@@ -1,12 +1,13 @@
 import React, {Component} from "react"
 import {Link} from "react-router";
 
+
 class News extends Component {
 
     render() {
         return (
             <div>
-            <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+            /*<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
                 <span>
                 <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span>
@@ -42,7 +43,7 @@ class News extends Component {
 
 
 
-
+*/
             <div class="wrapper">
               
                     <button class="btn sort-btn btn-lg" id="listNew" href="/connections/chrono">r/StockMarket</button>
