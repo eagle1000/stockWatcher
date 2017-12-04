@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import {Link} from "react-router";
 
+
 class profCreate extends Component {
   render(){
     return(

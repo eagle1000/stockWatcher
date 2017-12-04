@@ -6,7 +6,11 @@ import profCreate from "./components/profile_create.js"
 import WishList from "./components/wishList.js"
 import Stocks from "./components/stocks.js"
 import logo from './logo.svg';
+import "./css/stocksstyle.css";
+import "./css/loginstyle.css";
 import './App.css';
+
+
 
 
 const App = () => 

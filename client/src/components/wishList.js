@@ -1,12 +1,15 @@
 import React, {Component} from "react"
 import {Link} from "react-router";
 
+
 class WishList extends Component {
 
     render() {
         return (
             <div>
+
 <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+
     <span>
     <button className="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span>
@@ -39,7 +42,7 @@ class WishList extends Component {
             </li>
         </ul>
     </div>
-</nav>
+</nav>*/
 
 <div className="container-fluid WishList-container">
 </div>
