@@ -16,34 +16,74 @@ const helpers = {
           for (var i = 0; i < data.length; i++) {
             var tickerSymbol = Object.values(data[i]).pop();
             tickerArray.push(tickerSymbol);
-            return tickerArray;
+           
           }
+           return tickerArray;
         })
         //pass through the array of ticker symbols into a for loop where every ticker symbol will do a get request to the API to return pricing data ***NOT WORKING***
-        // .then(function(tickerArray) {
-        //   console.log("this is ticker array", tickerArray);
-        //   var tickerData = tickerArray["0"];
-        //   for (let j = 0; j < tickerData.length; j++) {
-        //     console.log("tickerData length", tickerData.length);
-        //  return axios.get(
-        //       "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
-        //         tickerData[j] +
-        //         "&interval=1min&apikey=768XGV67OZVODVUO"
-        //     );
-        //   }
-        // })
+       
+    // .then(function(tickerArray) {
+    // console.log("this is ticker array", tickerArray);
+    //           // var tickerData = tickerArray["0"];
+    //           return Promise.all(tickerArray.map(tik => {
+    //               // let tickerData = tik;  // need to find out the data type here.
+    //               return axios.get("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + tik +
+    //                         "&interval=1min&apikey=768XGV67OZVODVUO");
+    //           }));
+    //       })
 
+
+
+
+
+
+
+
+// ******ORIGINAL*********
         .then(function(tickerArray) {
+          console.log("this is ticker array", tickerArray);
           var tickerData = tickerArray["0"];
-          console.log("this is tickerData", tickerData);
-          tickerData.forEach(function(tickerdata) {
-            return axios.get(
+          for (let j = 0; j < tickerData.length; j++) {
+            console.log("tickerData length", tickerData.length);
+        return axios.get(
               "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
-                tickerData +
+                tickerData[j] +
                 "&interval=1min&apikey=768XGV67OZVODVUO"
             );
-          });
+          }
         })
+
+
+
+
+ // .then(function(tickerArray) {
+ //          console.log("this is ticker array", tickerArray);
+ //          var tickerData = tickerArray["0"];
+ //          for (let j = 0; j < tickerData.length; j++) {
+ //            console.log("tickerData length", tickerData.length);
+ //          }
+ //            return Promise.all([
+ //                axios.get(
+ //                    "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol= AAPL&interval=1min&apikey=768XGV67OZVODVUO"
+ //                );
+ //                axios.get(
+ //                    "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT &interval=1min&apikey=768XGV67OZVODVUO"
+
+ //                );
+ //            ])
+ //        })
+
+        // .then(function(tickerArray) {
+        //   var tickerData = tickerArray["0"];
+        //   console.log("this is tickerData", tickerData);
+        //   tickerData.forEach(function(tickerdata) {
+        //     return axios.get(
+        //       "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
+        //         tickerData +
+        //         "&interval=1min&apikey=768XGV67OZVODVUO"
+        //     );
+        //   });
+        // })
 
         //Extract the final price from each stock and return with stock name in an array to send to src/components/stocks.js
         .then(function(response) {

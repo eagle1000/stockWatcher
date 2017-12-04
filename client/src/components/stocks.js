@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import {Link} from "react-router";
 // Include the helpers for making API calls
 import helpers from "../utils/helpers";
-
+import Chart from "./Chart.js"
 
 
 class Stocks extends Component {
@@ -88,6 +88,8 @@ savedStocks() {
     </div>
 
 <div className="container-fluid stocks-container">
+    <h2>{this.state.hotStocks}</h2>
+    <Chart />
 </div>
 
         <footer className="footer">
@@ -95,7 +97,7 @@ savedStocks() {
             <p>Stocks Scraper</p>
             // <h1>{this.state.close}</h1>
             
-            <h2>{this.state.hotStocks}</h2>
+            
            
           </div>
         </footer>
