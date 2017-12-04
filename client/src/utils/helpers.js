@@ -40,18 +40,18 @@ const helpers = {
 
 
 // ******ORIGINAL*********
-        .then(function(tickerArray) {
-          console.log("this is ticker array", tickerArray);
-          var tickerData = tickerArray["0"];
-          for (let j = 0; j < tickerData.length; j++) {
-            console.log("tickerData length", tickerData.length);
-        return axios.get(
-              "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
-                tickerData[j] +
-                "&interval=1min&apikey=768XGV67OZVODVUO"
-            );
-          }
-        })
+        // .then(function(tickerArray) {
+        //   console.log("this is ticker array", tickerArray);
+        //   var tickerData = tickerArray[0];
+        //   for (let j = 0; j < tickerData.length; j++) {
+        //     console.log("tickerData length", tickerData.length);
+        // return axios.get(
+        //       "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
+        //         tickerData[j] +
+        //         "&interval=1min&apikey=768XGV67OZVODVUO"
+        //     );
+        //   }
+        // })
 
 
 
@@ -86,18 +86,18 @@ const helpers = {
         // })
 
         //Extract the final price from each stock and return with stock name in an array to send to src/components/stocks.js
-        .then(function(response) {
-          var stockPrices = response.data["Time Series (1min)"];
-          console.log("these are the stock prices", stockPrices);
-          const latestPrice = stockPrices[Object.keys(stockPrices)[0]];
-          var stockName = response.data["Meta Data"]["2. Symbol"];
-          console.log("This is stock name", stockName);
-          console.log(
-            "From getSavedStocks, this is the final price",
-            latestPrice["4. close"]
-          );
-          return [stockName, latestPrice["4. close"]];
-        })
+        // .then(function(response) {
+        //   var stockPrices = response.data["Time Series (1min)"];
+        //   console.log("these are the stock prices", stockPrices);
+        //   const latestPrice = stockPrices[Object.keys(stockPrices)[0]];
+        //   var stockName = response.data["Meta Data"]["2. Symbol"];
+        //   console.log("This is stock name", stockName);
+        //   console.log(
+        //     "From getSavedStocks, this is the final price",
+        //     latestPrice["4. close"]
+        //   );
+        //   return [stockName, latestPrice["4. close"]];
+        // })
     );
   }
 

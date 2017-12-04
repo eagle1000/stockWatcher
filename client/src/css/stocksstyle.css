@@ -25,6 +25,11 @@ body {
     height: 80px;
 }
 
+.navLogo{
+  width: 250px;
+  height:80px;
+
+}
 .form-control{
   margin-bottom: -40px;
 
@@ -53,7 +58,7 @@ li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 10px 70px;
+    padding: 10px 80px;
     
 }
 
@@ -76,6 +81,8 @@ li a:hover {
   margin-bottom: 18px;
   margin-left: 5px;
   margin-right: 5px;
+  
+
 }
 .sort-btn:hover {
   background-color: #3cfca9;

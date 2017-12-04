@@ -31,9 +31,9 @@ li {
     font-family: "Raleway", sans-serif;
     padding-bottom: 10px;
 }
-.form-inline{
-	padding-left: 200px;
-}
+/* .form-inline{
+  padding-left: 200px;
+} */
 
 li a {
     display: block;
