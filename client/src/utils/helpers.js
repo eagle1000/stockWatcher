@@ -4,6 +4,11 @@ import axios from "axios";
 // Helper Functions
 const helpers = {
   //first do a call to the api/stocks route to return the list of stocks from database
+  getEveryUNeed: function(){
+    return axios.get("/api/news")
+  },
+
+
   getSavedStocks: function() {
     return (
       axios

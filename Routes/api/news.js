@@ -6,11 +6,7 @@ router
 	.route("/")
 	.get(userController.findAllNews)
 
-router
-  .route("/:id")
-  .get(userController.findSavedNews)
-  .put(userController.insertNews)
-  
+
 
 
 module.exports = router;

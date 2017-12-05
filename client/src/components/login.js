@@ -21,8 +21,9 @@ class Login extends Component {
 			<input type="email" name="email" id="inputEmail" className="form-control form-box-style" placeholder="Email" required autofocus></input>
 			<label for="inputPassword" className="sr-only">Password</label>
 			<input type="password" name="user_password" id="inputPassword" className="form-control form-box-style" placeholder="Password" required></input>
-			<button className="btn sign-in-btn btn-lg btn-block" type="submit" id="sign-in">Sign In</button>
-			<button action="/signup" method="GET" className="btn sign-in-btn btn-lg btn-block" id="create"> <a href="/signup" id="signup">Create Account</a></button>
+			<button className="btn sign-in-btn btn-lg btn-block" type="submit" id="sign-in"><a href="/Stocks" id="signin">Sign In</a></button>
+
+			<button action="/profCreate" method="GET" className="btn sign-in-btn btn-lg btn-block" id="create"> <a href="/profCreate" id="signup">Create Account</a></button>
 
 		</form>
 		

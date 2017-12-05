@@ -59,7 +59,7 @@ savedStocks() {
                             <a className="nav-link" href="/news"><h4>News</h4></a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/login" id="sign-out-button"><h4>Sign Out</h4></a>
+                            <a className="nav-link" href="/" id="sign-out-button"><h4>Sign Out</h4></a>
                         </li>
                     </ul>
                 </div>

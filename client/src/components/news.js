@@ -1,8 +1,29 @@
 import React, {Component} from "react"
 import {Link} from "react-router";
-
+import helpers from "../utils/helpers.js"
 
 class News extends Component {
+    state = {
+        articles: []
+    }
+    componentDidMount(){
+        console.log("we are here in compmount")
+        let app = this
+        helpers.getEveryUNeed().then(function(articles){
+            console.log(articles, "yeaaaaaa ******")
+            app.setState({articles: articles.data})
+        })
+    
+    }
+
+
+    renderArticles(){
+        return this.state.articles.map(function(article, index){
+            return <p key= {index}>{article.headline, article.summary}</p>
+            
+        })
+    } 
+
 
     render() {
         return (
@@ -42,6 +63,7 @@ class News extends Component {
             </div>
 
             <div className="container-fluid article-container">
+                {this.renderArticles()}
             </div>
 
             <footer className="footer">

@@ -64,7 +64,7 @@ li a {
 
 /* Change the link color to #111 (black) on hover */
 li a:hover {
-    background-color: #fff;
+    background-color: "grey";
 	font-family: "Raleway", sans-serif;
 }
 .sort-btn {
@@ -85,7 +85,7 @@ li a:hover {
 
 }
 .sort-btn:hover {
-  background-color: #3cfca9;
+  background-color: #2B65EC;
 }
 
 p {

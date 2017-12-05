@@ -13,6 +13,8 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },  
 
+  
+
   create: function(req, res) {
   	var topStocks = ["AAPL", "IBM", "FB", "TSLA", "GOOGL", "MSFT", "NFLX", "AMZN", "GE", "DIS", "WMT", "TGT", "BAC", "GS", "XOM", "MCD", "TWTR", "MDB", "BABA", "WYNN", "SHOP", "EBAY", "NVDA", "PYPL", "SQ"];
 	var convertTicker = t => { return {ticker: t}}
