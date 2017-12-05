@@ -1,24 +1,16 @@
 import React, {Component} from "react";
 import {Line} from 'react-chartjs-2';
+import Stocks from "./stocks.js";
 
 class Chart extends Component {
-
 	constructor (props){
 		super(props);
 		this.state = {
-			chartData: {
-				labels: ["January", "February", "March", "April", "May", "June", "July"],
-				datasets: [
-				 {
-		            label: "title",
-		            backgroundColor: 'rgb(255, 99, 132)',
-		            borderColor: 'rgb(255, 99, 132)',
-		            data: [0, 10, 5, 2, 20, 30, 45]
-        	     }
-        	   ]
-		     }
-	       }
-	     }
+			chartData:props.chartData
+	    }    
+  	}
+
+
 
 	render (){
 		return (
@@ -29,8 +21,15 @@ class Chart extends Component {
 					maintainAspectRatio: false,
 					tooltips: {
 						enabled: true
-					}
-
+					},
+					// title:{
+					// 	display:true,
+					// 	text:"AAPL",
+					// 	fontSize:25
+					// },
+					legend:{
+						display:false
+					}					
 				}}
 			/>
 		 </div>

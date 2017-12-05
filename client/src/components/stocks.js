@@ -1,49 +1,84 @@
-import React, {Component} from "react"
-import {Link} from "react-router";
+import React, { Component } from "react";
+import { Link } from "react-router";
 // Include the helpers for making API calls
 import helpers from "../utils/helpers";
-import Chart from "./Chart.js"
-
+import Chart from "./Chart.js";
 
 class Stocks extends Component {
- constructor(props) {
-    super(props);
-    this.state =  {
-        // close: '',
-        hotStocks: []
+    constructor(props) {
+        super(props);
+        this.state = {
+            hotStocks: [],
+            userStocks: [],
+            chartData: {}
+        };
+        this.savedStocks = this.savedStocks.bind(this);
+        this.userSavedStocks = this.userSavedStocks.bind(this);
+        this.getChartData = this.getChartData.bind(this);
     }
-    // this.setQuery = this.setQuery.bind(this);
-    this.savedStocks = this.savedStocks.bind(this);
-  }  
 
-savedStocks() {
-    // console.log('we hit savedStocks function starting --');
-    helpers.getSavedStocks().then((stocks) => {
-      // console.log('these are the saved stocks',stocks)
-      this.setState({hotStocks: stocks});
-    });
-  }
+    getChartData() {
+        // ajax calls here
+        helpers.getTopStockChartData().then(data => {
+            this.setState({
+                chartData: {
+                    labels: [
+                        "January1",
+                        "February",
+                        "March",
+                        "April",
+                        "May",
+                        "June",
+                        "July"
+                    ],
+                    datasets: [
+                        {
+                            data: [0, 10, 5, 2, 20, 30, 45]
+                        }
+                    ]
+                }
+            });
+        });
+    }
 
- // setQuery() {
- //    // console.log('we hit setQuest function starting --');
- //    helpers.realTimeQuotes().then((data) => {
- //      // console.log('this is stock price IN THE COMPONENT ready to gooo ---',data)
- //      this.setState({close: data});
- //    });
- //  }
+    renderHotStocks() {
+        return this.state.hotStocks.map(function(item) {
+            return <p key={item}>{item}</p>;
+        });
+    }
 
+      renderUserStocks() {
+        return this.state.userStocks.map(function(item) {
+            return <p key={item}>{item}</p>;
+        });
+    }
 
-  componentWillMount() {
-    // this.setQuery()
-    this.savedStocks()
-  }
+    savedStocks() {
+        // console.log('we hit savedStocks function starting --');
+        helpers.getSavedStocks().then(stocks => {
+            // console.log('these are the saved stocks',stocks)
+            this.setState({ hotStocks: stocks });
+        });
+    }
+
+    userSavedStocks() {
+        // console.log('we hit savedStocks function starting --');
+        helpers.getUserStocks().then(mystocks => {
+            // console.log('these are the saved stocks',stocks)
+            this.setState({ userStocks: mystocks });
+        });
+    }
+
+    componentWillMount() {
+        this.savedStocks();
+        this.userSavedStocks();
+        this.getChartData();
+    }
 
     render() {
-
-
-    
         return (
             <div>
+<<<<<<< HEAD
     
 
         <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
@@ -62,34 +97,67 @@ savedStocks() {
                             <a className="nav-link" href="/" id="sign-out-button"><h4>Sign Out</h4></a>
                         </li>
                     </ul>
+=======
+                <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+                    <div
+                        className="collapse navbar-collapse"
+                        id="navbarContent"
+                    >
+                        <img
+                            src="http://embswarsaw.com/wp-content/uploads/2017/06/logo_StockWatch2.png"
+                            className="navLogo"
+                        />
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item">
+                                <a className="nav-link" href="/stocks">
+                                    <h4>Stocks</h4>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/news">
+                                    <h4>News</h4>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a
+                                    className="nav-link"
+                                    href="/login"
+                                    id="sign-out-button"
+                                >
+                                    <h4>Sign Out</h4>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div className="wrapper">
+                    <button
+                        className="btn sort-btn btn-lg"
+                        id="listNew"
+                        href="/connections/chrono"
+                    >
+                        Hot Stocks
+                    </button>
+>>>>>>> 2da5dffc2234446a18d624ca48a3ce6f2b18bd6f
                 </div>
-            </nav>
 
+                <div className="container-fluid stocks-container">
+                    <div>{this.renderHotStocks()}</div>
 
-<div className="wrapper">
-  
-        <button className="btn sort-btn btn-lg" id="listNew" href="/connections/chrono">Hot Stocks</button>
-    </div>
+                    <Chart chartData={this.state.chartData}/>
 
-<div className="container-fluid stocks-container">
-    <h2>{this.state.hotStocks}</h2>
-    <Chart />
-</div>
+                    <div>{this.renderUserStocks()}</div>
+                </div>
 
-        <footer className="footer">
-          <div className="container">
-            <p>Stocks Scraper</p>
-            // <h1>{this.state.close}</h1>
-            
-            
-           
-          </div>
-        </footer>
- </div>
-                    
-
-            )
+                <footer className="footer">
+                    <div className="container">
+                        <p>Stocks Scraper</p>
+                    </div>
+                </footer>
+            </div>
+        );
     }
 }
 
-export default Stocks
+export default Stocks;
