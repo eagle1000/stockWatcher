@@ -18,56 +18,46 @@ class Stocks extends Component {
     }
 
     getChartData() {
-        // ajax calls here
         helpers.getTopStockChartData().then(data => {
             this.setState({
-                chartData: {
-                    labels: [
-                        "January1",
-                        "February",
-                        "March",
-                        "April",
-                        "May",
-                        "June",
-                        "July"
-                    ],
-                    datasets: [
-                        {
-                            data: [0, 10, 5, 2, 20, 30, 45]
-                        }
-                    ]
-                }
-            });
+                chartData: data});
         });
+    }
+
+    renderChartData(){
+        return this.state.hotStocks.map(function(item) {
+            return <Chart key={item}/>;
+        }) 
     }
 
     renderHotStocks() {
         return this.state.hotStocks.map(function(item) {
             return <p key={item}>{item}</p>;
-        });
+        })
     }
 
       renderUserStocks() {
         return this.state.userStocks.map(function(item) {
             return <p key={item}>{item}</p>;
-        });
+        })
     }
 
     savedStocks() {
-        // console.log('we hit savedStocks function starting --');
+        console.log('we hit savedStocks function starting --');
         helpers.getSavedStocks().then(stocks => {
             // console.log('these are the saved stocks',stocks)
             this.setState({ hotStocks: stocks });
-        });
-    }
-
+        })
+     }
+      
     userSavedStocks() {
         // console.log('we hit savedStocks function starting --');
         helpers.getUserStocks().then(mystocks => {
             // console.log('these are the saved stocks',stocks)
             this.setState({ userStocks: mystocks });
-        });
+        })
     }
+     
 
     componentWillMount() {
         this.savedStocks();
@@ -144,8 +134,8 @@ class Stocks extends Component {
 
                 <div className="container-fluid stocks-container">
                     <div>{this.renderHotStocks()}</div>
-
-                    <Chart chartData={this.state.chartData}/>
+                    <div>{this.renderChartData()}</div>
+                    
 
                     <div>{this.renderUserStocks()}</div>
                 </div>
