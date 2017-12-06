@@ -1318,7 +1318,7 @@ chardet@^0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.4.2.tgz#b5473b33dc97c424e5d98dc87d55d4d8a29c8bf2"
 
-chart.js@^2.7.1:
+chart.js@^2.6.0:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.7.1.tgz#ae90b4aa4ff1f02decd6b1a2a8dabfd73c9f9886"
   dependencies:
@@ -5165,7 +5165,7 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-chartjs-2@^2.6.4:
+react-chartjs-2@^2.1.0:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-2.6.4.tgz#6474d4480a6c74f2061ee0bbbe6d0f4db2170a81"
   dependencies:
