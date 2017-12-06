@@ -18,17 +18,19 @@ class Stocks extends Component {
     }
 
     getChartData() {
+
         helpers.getTopStockChartData().then(data => {
+            console.log('this is chart data',data)
             this.setState({
-                chartData: data});
+                chartData: data}, () => {
+
+                    console.log("this is chardata state", this.state.chartData)
+                    
+                });
+
         });
     }
 
-    renderChartData(){
-        return this.state.hotStocks.map(function(item) {
-            return <Chart key={item}/>;
-        }) 
-    }
 
     renderHotStocks() {
         return this.state.hotStocks.map(function(item) {
@@ -68,26 +70,6 @@ class Stocks extends Component {
     render() {
         return (
             <div>
-<<<<<<< HEAD
-    
-
-        <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
-
-                
-                <div className="collapse navbar-collapse" id="navbarContent">
-                <img src= "http://embswarsaw.com/wp-content/uploads/2017/06/logo_StockWatch2.png" className="navLogo"/>
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item">
-                            <a className="nav-link" href="/stocks"><h4>Stocks</h4></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/news"><h4>News</h4></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/" id="sign-out-button"><h4>Sign Out</h4></a>
-                        </li>
-                    </ul>
-=======
                 <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
                     <div
                         className="collapse navbar-collapse"
@@ -125,17 +107,16 @@ class Stocks extends Component {
                     <button
                         className="btn sort-btn btn-lg"
                         id="listNew"
-                        href="/connections/chrono"
-                    >
+                        href="/connections/chrono">
                         Hot Stocks
                     </button>
->>>>>>> 2da5dffc2234446a18d624ca48a3ce6f2b18bd6f
                 </div>
 
                 <div className="container-fluid stocks-container">
                     <div>{this.renderHotStocks()}</div>
-                    <div>{this.renderChartData()}</div>
                     
+
+                     <Chart chartData={this.state.chartData}/>
 
                     <div>{this.renderUserStocks()}</div>
                 </div>

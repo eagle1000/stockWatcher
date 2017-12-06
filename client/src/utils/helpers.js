@@ -170,7 +170,7 @@ const helpers = {
             );
             chartReturnedData.push(chartStockInfo.data);
             //  console.log('this is chart stock info', chartStockInfo)
-            // console.log('this is chart returned data', chartReturnedData)
+            console.log('this is chart returned data', chartReturnedData)
           }
           return chartReturnedData;
         })
@@ -195,16 +195,20 @@ const helpers = {
             chartPriceArray.push(chartPrice);
             console.log("this is chart price array", chartPriceArray);
             var chartObj = {
-              chartData: {
-                labels: [chartDateArray],
+              
+                labels: dailyData2,
                 datasets: [
                   {
-                    data: [chartPriceArray]
+                    data: chartPrice
                   }
+                ],
+                backgroundColor: [
+
+                  'rgba(255, 99, 132j, 0.6)'
                 ]
-              }
+              
             };
-            console.log("this is chartObj", chartObj);
+            console.log("this is chartObj", JSON.stringify(chartObj));
           }
           return chartObj;
         })
