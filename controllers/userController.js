@@ -117,7 +117,7 @@ module.exports = {
   remove: function(req, res) {
     db.UserData
       .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
+      .remove({"stocks": req.body.stock})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -126,9 +126,18 @@ module.exports = {
       console.log(req.body)
     db.UserData
       .findOneAndUpdate({"_id": req.params.id }, 
-      { $push: { "stocks": req.body.stock } } )
+      { $push: { "stocks": req.body.stocks } } )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+},
+
+deleteStock: function(req, res) {
+    console.log(req.body)
+    db.UserData
+    .findById(req.params.id)
+    .remove({"stocks": req.body.stock})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
 },
 
   insertNews: function(req, res) {

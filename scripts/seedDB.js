@@ -12,7 +12,7 @@ mongoose.connect(
 );
 
 const stockSeed = {
-	topStocks: ["AAPL", "IBM", "FB"]
+	topStocks: ["AAPL"]
 };
 
 

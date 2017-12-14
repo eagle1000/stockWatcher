@@ -23,7 +23,6 @@ class Chart extends Component {
 	render() {
 		return (
 			<div className="chart">
-			hello
 				<Line
 					data={this.state.chartData}
 					options={{

@@ -5,10 +5,9 @@ import axios from "axios";
 const helpers = {
   // Method for rendering Hot Stocks
   //first do a call to the api/stocks route to return the list of stocks from database
-  getEveryUNeed: function(){
-    return axios.get("/api/news")
+  getEveryUNeed: function() {
+    return axios.get("/api/news");
   },
-
 
   getSavedStocks: function() {
     return (
@@ -74,37 +73,44 @@ const helpers = {
     );
   },
   // Helper Method for rendering stocks tracked by user
+  saveUserStocks: function(id, stocks) {
+    return axios.put("/api/stocks/" + id, {"stocks": stocks})
+    .then(function(results){
+      console.log("axios results", results)
+      return results
+    })
+  },
 
-  getUserStocks: function() {
+  getUserStocks: function(id) {
     return (
       axios
-        .get("/api/stocks")
+        .get("/api/stocks/" + id)
         .then(function(results) {
           var userData = results.data;
-          // console.log("this is data array", data);
-          var userTickerArray = [];
-          //loop over the database array to extract the value which is the string ticker symbol of each stock
-          for (var i = 0; i < userData.length; i++) {
-            var userTickerSymbol = Object.values(userData[i]).pop();
-            userTickerArray.push(userTickerSymbol);
-          }
-          return userTickerArray;
+          console.log("this is data array", userData);
+          // var userTickerArray = [];
+          // //loop over the database array to extract the value which is the string ticker symbol of each stock
+          // for (var i = 0; i < userData.length; i++) {
+          //   var userTickerSymbol = Object.values(userData[i]).pop();
+          //   userTickerArray.push(userTickerSymbol);
+          // }
+          return userData;
         })
         //pass through the array of ticker symbols into a for loop where every ticker symbol will do a get request to the API to return pricing data
         .then(async userTickerArray => {
-          // console.log("this is ticker array", userTickerArray);
-          var userTickerData = userTickerArray["0"];
+          console.log("this is ticker array", userTickerArray);
+          var userTickerData = userTickerArray;
           let userReturnedData = [];
           for (let j = 0; j < userTickerData.length; j++) {
-            // console.log("userTickerData length", userTickerData.length);
+            console.log("userTickerData length", userTickerData.length);
             let userStockInfo = await axios.get(
               "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
                 userTickerData[j] +
                 "&interval=1min&apikey=768XGV67OZVODVUO"
             );
             userReturnedData.push(userStockInfo.data);
-            // console.log('this is stock info', userStockInfo)
-            // console.log('this is returned data', userReturnedData)
+            console.log("this is stock info", userStockInfo);
+            console.log("this is returned data", userReturnedData);
           }
           return userReturnedData;
         })
@@ -139,81 +145,73 @@ const helpers = {
           return userFinalArray;
         })
     );
-  },
-  //Return daily chart data for Hot Stocks
-  getTopStockChartData: function() {
-    return (
-      axios
-        .get("/api/stocks")
-        .then(function(results) {
-          var chartData = results.data;
-          // console.log("this is data array", data);
-          var chartTickerArray = [];
-          //loop over the database array to extract the value which is the string ticker symbol of each stock
-          for (var i = 0; i < chartData.length; i++) {
-            var chartTickerSymbol = Object.values(chartData[i]).pop();
-            chartTickerArray.push(chartTickerSymbol);
-          }
-          return chartTickerArray;
-        })
-        //pass through the array of ticker symbols into a for loop where every ticker symbol will do a get request to the API to return pricing data
-        .then(async chartTickerArray => {
-          console.log("this is chart ticker array", chartTickerArray);
-          var chartTickerData = chartTickerArray["0"];
-          let chartReturnedData = [];
-          for (let j = 0; j < chartTickerData.length; j++) {
-            // console.log("chartTickerData length", chartTickerData.length);
-            let chartStockInfo = await axios.get(
-              "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" +
-                chartTickerData[j] +
-                "&interval=1min&apikey=768XGV67OZVODVUO"
-            );
-            chartReturnedData.push(chartStockInfo.data);
-            //  console.log('this is chart stock info', chartStockInfo)
-            console.log('this is chart returned data', chartReturnedData)
-          }
-          return chartReturnedData;
-        })
-        .then(function(chartReturnedData) {
-          var chartDateArray = [];
-          var chartPriceArray = [];
-
-          for (var k = 0; k < chartReturnedData.length; k++) {
-            var dailyData = chartReturnedData[k]["Time Series (Daily)"];
-            var dailyData2 = Object.keys(dailyData);
-            // console.log("this is daily data2", dailyData2)
-            chartDateArray.push(dailyData2);
-            // console.log("chart date array", chartDateArray)
-            var dailyPrice = chartReturnedData[k]["Time Series (Daily)"];
-            // console.log("this is daily price", dailyPrice)
-            var dailyPriceSeries = Object.values(dailyPrice);
-            // console.log("Daily Price Series", dailyPriceSeries);
-            var chartPrice = dailyPriceSeries.map(function(x) {
-              return x["4. close"];
-            });
-            // console.log('chart prices', chartPrice)
-            chartPriceArray.push(chartPrice);
-            console.log("this is chart price array", chartPriceArray);
-            var chartObj = {
-              
-                labels: dailyData2,
-                datasets: [
-                  {
-                    data: chartPrice
-                  }
-                ],
-                backgroundColor: [
-
-                  'rgba(255, 99, 132j, 0.6)'
-                ]
-              
-            };
-            console.log("this is chartObj", JSON.stringify(chartObj));
-          }
-          return chartObj;
-        })
-    );
   }
+
+  // getChartPrices: function() {
+  //   return (
+  //     axios
+  //       .get("/api/stocks")
+  //       .then(function(results) {
+  //         var chartData = results.data;
+  //         // console.log("this is data array", data);
+  //         var chartTickerArray = [];
+  //         //loop over the database array to extract the value which is the string ticker symbol of each stock
+  //         for (var i = 0; i < chartData.length; i++) {
+  //           var chartTickerSymbol = Object.values(chartData[i]).pop();
+  //           chartTickerArray.push(chartTickerSymbol);
+  //         }
+  //         return chartTickerArray;
+  //       })
+  //       //pass through the array of ticker symbols into a for loop where every ticker symbol will do a get request to the API to return pricing data
+  //       .then(async chartTickerArray => {
+  //         console.log("this is chart ticker array", chartTickerArray);
+  //         var chartTickerData = chartTickerArray["0"];
+  //         let chartReturnedData = [];
+  //         for (let j = 0; j < chartTickerData.length; j++) {
+  //           // console.log("chartTickerData length", chartTickerData.length);
+  //           let chartStockInfo = await axios.get(
+  //             "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" +
+  //               chartTickerData[j] +
+  //               "&interval=1min&apikey=768XGV67OZVODVUO"
+  //           );
+  //           chartReturnedData.push(chartStockInfo.data);
+  //           //  console.log('this is chart stock info', chartStockInfo)
+  //           console.log('this is chart returned data', chartReturnedData)
+  //         }
+  //         var test = [1,2,3,4,5]
+  //         return chartReturnedData;
+  //       })
+  //       .then(function(chartReturnedData) {
+  //         var chartDateArray = [];
+  //         var chartPriceArray = [];
+
+  //         for (var k = 0; k < chartReturnedData.length; k++) {
+  //           var dailyData = chartReturnedData[k]["Time Series (Daily)"];
+  //           var dailyData2 = Object.keys(dailyData);
+  //           // console.log("this is daily data2", dailyData2)
+  //           chartDateArray.push(dailyData2);
+  //           // console.log("chart date array", chartDateArray)
+  //           var dailyPrice = chartReturnedData[k]["Time Series (Daily)"];
+  //           // console.log("this is daily price", dailyPrice)
+  //           var dailyPriceSeries = Object.values(dailyPrice);
+  //           // console.log("Daily Price Series", dailyPriceSeries);
+  //           var chartPrice = dailyPriceSeries.map(function(x) {
+  //             return x["4. close"];
+  //           });
+  //           var chartPrice2;
+  //             for (var l = 0; l < chartPrice.length; l++) {
+  //               var chartPrice2 = parseInt(chartPrice[l])
+
+  //           // console.log('chart prices', chartPrice)
+  //           chartPriceArray.push(chartPrice2);
+  //           console.log("this is chart price array", chartPriceArray);
+  //         }
+  //         }
+  //         var test=[1,2,3,4,5]
+  //         return test;
+  //       })
+  //   );
+  // }
   // Helpers closing brace
 };
 

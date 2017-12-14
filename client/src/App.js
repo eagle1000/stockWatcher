@@ -5,6 +5,7 @@ import Login from "./components/login.js"
 import profCreate from "./components/profile_create.js"
 import WishList from "./components/wishList.js"
 import Stocks from "./components/stocks.js"
+import Dashboard from "./components/dashboard.js"
 import logo from './logo.svg';
 import "./css/stocksstyle.css";
 import "./css/loginstyle.css";
@@ -22,6 +23,7 @@ const App = () =>
       <Route exact path= "/profCreate" component = {profCreate}/>
       <Route exact path= "/WishList" component = {WishList}/>
       <Route exact path= "/Stocks" component = {Stocks}/>
+      <Route exact path= "/Stocks/:id" component = {Dashboard}/>
       <Route exact path= "/signin" component = {Stocks}/>
     </Switch>
 
