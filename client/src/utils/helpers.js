@@ -9,6 +9,27 @@ const helpers = {
     return axios.get("/api/news");
   },
 
+  handleClick: function(item) {
+    var queryString = window.location.pathname;
+    console.log("this is queryString", queryString);
+    var querySplit = queryString.split("/");
+    console.log("this is querySplit", querySplit);
+    var queryId = querySplit[2];
+    console.log("this is queryId", queryId);
+    // console.log("this is item", item)
+    var txt = item;
+    var txt2 = txt.split(" ");
+    // console.log(txt2);
+    var stockTicker = txt2[0];
+    console.log("this is stock", stockTicker);
+    return axios
+      .delete("/api/stocks/" + queryId, { stocks: stockTicker })
+      .then(function(results) {
+        console.log("axios results", results);
+        return results;
+      }) 
+  },
+
   getSavedStocks: function() {
     return (
       axios
@@ -72,15 +93,16 @@ const helpers = {
         })
     );
   },
-  // Helper Method for rendering stocks tracked by user
+  // Helper Method for saving new stocks to user dashboard
   saveUserStocks: function(id, stocks) {
-    return axios.put("/api/stocks/" + id, {"stocks": stocks})
-    .then(function(results){
-      console.log("axios results", results)
-      return results
-    })
+    return axios
+      .put("/api/stocks/" + id, { stocks: stocks })
+      .then(function(results) {
+        console.log("axios results", results);
+        return results;
+      });
   },
-
+  // Helper Method for rendering stocks tracked by user
   getUserStocks: function(id) {
     return (
       axios
@@ -88,12 +110,6 @@ const helpers = {
         .then(function(results) {
           var userData = results.data;
           console.log("this is data array", userData);
-          // var userTickerArray = [];
-          // //loop over the database array to extract the value which is the string ticker symbol of each stock
-          // for (var i = 0; i < userData.length; i++) {
-          //   var userTickerSymbol = Object.values(userData[i]).pop();
-          //   userTickerArray.push(userTickerSymbol);
-          // }
           return userData;
         })
         //pass through the array of ticker symbols into a for loop where every ticker symbol will do a get request to the API to return pricing data

@@ -16,6 +16,6 @@ router
 	.route("/:id")
 	.get(userController.findStocks)
 	.put(userController.insertStock)
-	.delete(userController.remove) 
+	.delete(userController.removeStock) 
 
 module.exports = router;

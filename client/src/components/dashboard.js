@@ -8,20 +8,21 @@ class Dashboard extends Component {
         this.state = {
             userStocks: [],
             stocks: ""
-            
         };
         this.userSavedStocks = this.userSavedStocks.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    }
 
+    }
 
     renderUserStocks() {
         return this.state.userStocks.map(function(item) {
-            return <p key={item}>{item}</p>;
+            return <div>
+            <button className="btn btn-primary delete-btn" onClick={() => helpers.handleClick(item)}>Delete</button>
+                    <p className="user-stocks" key={item}>{item}</p>;
+                    </div>
         });
     }
-
 
     userSavedStocks() {
         // console.log('we hit savedStocks function starting --');
@@ -29,38 +30,32 @@ class Dashboard extends Component {
             // console.log('these are the saved stocks',stocks)
             this.setState({ userStocks: mystocks });
         });
-    };
+    }
 
-    handleInputChange (event){
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-    // console.log(this.state.stocks)
-  };
+    handleInputChange(event) {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    }
 
-
-  handleFormSubmit (event){
-    // event.preventDefault();
-    console.log('handleFormSubmit',this.state.stocks)
-    helpers.saveUserStocks(this.props.match.params.id, this.state.stocks)
-    // .then(helpers.getUserStocks(this.props.match.params.id))
-    // .then(mystocks => {
-    //     this.setState({userStocks: mystocks});
-    // });
-  };
+    handleFormSubmit(event) {
+        // event.preventDefault();
+        console.log("handleFormSubmit", this.state.stocks);
+        helpers.saveUserStocks(this.props.match.params.id, this.state.stocks)
+        // return state of stocks to empty to clear entry form field
+        .then( () => {
+            this.setState({stocks:""})
+        });
+    }
 
     componentWillMount() {
         this.userSavedStocks();
-       
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         this.userSavedStocks();
     }
-
-    
-
 
     render() {
         return (
@@ -99,49 +94,44 @@ class Dashboard extends Component {
                 </nav>
 
                 <div className="wrapper">
-                  <a href="/stocks">
-                    <button
-                        className="btn sort-btn btn-lg"
-                        id="listNew">
-
-                        Hot Stocks
-                    </button>
+                    <a href="/stocks">
+                        <button className="btn sort-btn btn-lg" id="listNew">
+                            Hot Stocks
+                        </button>
                     </a>
 
-
-                      <div class="col-lg-6">
-    <div className="input-group">
-      <input 
-        type="text" 
-        className="form-control" 
-        placeholder="Enter a ticker symbol" 
-        value={this.state.stocks} 
-        onChange={this.handleInputChange} 
-        name="stocks" />
-      <span className="input-group-btn"> 
-        <button 
-            className="btn btn-secondary" 
-            type="button"
-            onClick={this.handleFormSubmit}>
-            Go!</button>
-      </span>
-    </div>
-  </div>
-
-
-
-
-
+                    <div class="col-lg-6">
+                        <div className="input-group">
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Enter a ticker symbol"
+                                value={this.state.stocks}
+                                onChange={this.handleInputChange}
+                                name="stocks"
+                            />
+                            <span className="input-group-btn">
+                                <button
+                                    className="btn btn-secondary"
+                                    type="button"
+                                    onClick={this.handleFormSubmit}
+                                >
+                                    Go!
+                                </button>
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="container-fluid stocks-container">
+                    
+                    
                     <div>{this.renderUserStocks()}</div>
+                    
                 </div>
 
                 <footer className="footer">
-                    <div className="container">
-                     
-                    </div>
+                    <div className="container" />
                 </footer>
             </div>
         );

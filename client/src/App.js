@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import News from "./components/news.js"
 import Login from "./components/login.js"
 import profCreate from "./components/profile_create.js"
@@ -10,6 +10,34 @@ import logo from './logo.svg';
 import "./css/stocksstyle.css";
 import "./css/loginstyle.css";
 import './App.css';
+import { logout } from './helpers/auth'
+import { firebaseAuth } from './config/constants'
+
+function PrivateRoute ({component: Component, authed, ...rest}) {
+  return (
+    <Route
+      {...rest}
+      render={(props) => authed === true
+        ? <Component {...props} />
+        : <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
+    />
+  )
+}
+
+function PublicRoute ({component: Component, authed, ...rest}) {
+  return (
+    <Route
+      {...rest}
+      render={(props) => authed === false
+        ? <Component {...props} />
+        : <Redirect to='/dashboard' />}
+    />
+  )
+}
+
+
+
+
 
 
 
